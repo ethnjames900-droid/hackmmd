@@ -2029,7 +2029,65 @@ body.logged-in .logged-in-only {
     animation: none;
   }
 }
+/* ================================
+   Bottom 360° Rotating Image
+   ================================ */
 
+.bottom-spin-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px 100px;
+  perspective: 1200px;
+  overflow: hidden;
+}
+
+.bottom-spin-image {
+  width: 220px;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+  border-radius: 16px;
+
+  /* Keeps the image vertically upright */
+  transform-style: preserve-3d;
+  transform-origin: center center;
+
+  /* Continuous clockwise 360° rotation */
+  animation: bottomImageSpin 5s linear infinite;
+
+  /* Premium depth */
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.35),
+    0 0 35px rgba(108, 99, 255, 0.25);
+}
+
+/*
+  Rotate around the vertical Y axis.
+  This creates the "book opening" / 3D card effect.
+*/
+@keyframes bottomImageSpin {
+  from {
+    transform: rotateY(0deg);
+  }
+
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+/* Mobile sizing */
+@media (max-width: 600px) {
+  .bottom-spin-section {
+    padding: 60px 20px 80px;
+  }
+
+  .bottom-spin-image {
+    width: 180px;
+    height: 270px;
+  }
+}
   </style>
 </head>
 
@@ -4091,7 +4149,7 @@ local model or service has been installed and configured.
 
         $("#loader").classList.add("hidden");
 
-      }, 3000);
+      }, 4000);
 
     });
 
@@ -4135,5 +4193,13 @@ local model or service has been installed and configured.
     <path d="M19.11 17.42c-.27-.14-1.59-.78-1.84-.87-.25-.09-.43-.14-.61.14-.18.27-.7.87-.86 1.05-.16.18-.32.2-.59.07-.27-.14-1.13-.42-2.15-1.34-.79-.7-1.32-1.56-1.47-1.83-.16-.27-.02-.42.12-.56.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.01-.22-.53-.45-.46-.61-.47h-.52c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.26s.98 2.62 1.11 2.8c.14.18 1.92 2.93 4.65 4.11.65.28 1.16.45 1.56.58.66.21 1.26.18 1.73.11.53-.08 1.59-.65 1.81-1.28.22-.63.22-1.17.16-1.28-.07-.11-.25-.18-.52-.32zM16.01 3.2c-7.08 0-12.82 5.74-12.82 12.82 0 2.26.59 4.47 1.72 6.42L3.08 28.8l6.5-1.7a12.78 12.78 0 0 0 6.43 1.74h.01c7.08 0 12.82-5.74 12.82-12.82S23.09 3.2 16.01 3.2zm0 23.42h-.01a10.6 10.6 0 0 1-5.4-1.47l-.39-.23-3.86 1.01 1.03-3.76-.25-.39a10.61 10.61 0 1 1 8.88 4.84z"/>
   </svg>
 </a>
+<!-- Bottom 360° Rotating Image -->
+<section class="bottom-spin-section">
+  <img
+    src="example.jpeg"
+    alt="HACKMMD"
+    class="bottom-spin-image"
+  >
+</section>
 </body>
 </html>
